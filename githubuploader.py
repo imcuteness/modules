@@ -1,7 +1,7 @@
 # meta developer: @im_cuteness
 
 
-from hikka import loader, utils
+from .. import loader, utils
 import requests
 import base64
 import os
