@@ -1,3 +1,2 @@
 githubuploader
 text2file
-cspotifynow
