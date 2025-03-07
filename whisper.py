@@ -92,7 +92,12 @@ class WhisperMod(loader.Module):
         username = username.replace("@", "")
         
         try:
-            user = await self._client.get_entity(username)
+            try:
+                user_id = int(username)
+                user = await self._client.get_entity(user_id)
+            except ValueError:
+                user = await self._client.get_entity(username)
+            
             user_id = user.id
             first_name = user.first_name
             
