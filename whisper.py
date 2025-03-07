@@ -111,8 +111,4 @@ class WhisperMod(loader.Module):
                 ]]
             }]
         except Exception:
-            return [{
-                "title": "❌ Error",
-                "description": self.strings["user_not_found"],
-                "message": self.strings["user_not_found"]
-            }] 
+            return Exception
