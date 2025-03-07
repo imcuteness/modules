@@ -111,4 +111,8 @@ class WhisperMod(loader.Module):
                 ]]
             }]
         except Exception:
-            return Exception
+            return [{
+                "title": "❌ Error",
+                "description": Exception,
+                "message": Exception
+            }] 
