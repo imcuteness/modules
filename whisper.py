@@ -72,7 +72,7 @@ class WhisperMod(loader.Module):
             message=message,
             reply_markup=[[
                 {
-                    "text": self.strings[read],
+                    "text": self.strings["read"],
                     "callback": self.read,
                     "args": (user_id, args),
                     "force_me": True,
@@ -96,23 +96,23 @@ class WhisperMod(loader.Module):
             user_id = user.id
             first_name = user.first_name
             
-            return [{
+            return {
                 "title": "🔒 Whisper",
                 "description": f"Send whisper to {first_name}",
-                "message": self.strings["inline_whisper"].format(user=first_name),
+                "message": self.strings["whisper"].format(user=first_name),
                 "reply_markup": [[
                     {
-                        "text": self.strings[read],
+                        "text": self.strings["read"],
                         "callback": self.read,
                         "args": (user_id, message),
                         "force_me": True,
                         "disable_security": True
                     }
                 ]]
-            }]
+            }
         except Exception:
-            return [{
+            return {
                 "title": "❌ Error",
                 "description": self.strings["user_not_found"],
                 "message": self.strings["user_not_found"]
-            }] 
+            } 
