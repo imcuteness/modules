@@ -53,10 +53,10 @@ class CuteAIMod(loader.Module):
     async def askai(self, message):
         """Ask an AI."""
         query = utils.get_args_raw(message)
-        await utils.answer(message, self.strings["loading"])
         if query == "":
             await utils.answer(message, self.strings["empty"])
             return
+        await utils.answer(message, self.strings["loading"])
         answer = self.ask(query, self.config["model"])
         await utils.answer(message, self.strings["answer"].format(
             query=query,
