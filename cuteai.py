@@ -25,12 +25,16 @@ class CuteAIMod(loader.Module):
         "name": "CuteAI",
         "answer": "💬 <b>Your prompt:</b> <code>{query}</code>\n\n💻 <b>AI answer:</b> {answer}",
         "model": "🔍 <b>Select the model:</b>",
-        "changed": "✅ <b>Model changed to <code>{model}</code>.</b>"
+        "changed": "✅ <b>Model changed to <code>{model}</code>.</b>",
+        "loading": "⚡️ <b>Waiting for AI answer.</b>",
+        "empty": "❌ <b>Your prompt can't be empty!</b>"
     }
     strings_ru = {
         "answer": "💬 <b>Ваш запрос:</b> <code>{query}</code>\n\n💻 <b>Ответ ИИ:</b> {answer}",
         "model": "🔍 <b>Выберите модель:</b>",
-        "changed": "✅ <b>Модель изменена на <code>{model}</code>.</b>"
+        "changed": "✅ <b>Модель изменена на <code>{model}</code>.</b>",
+        "loading": "⚡️ <b>Ожидаем ответ от ИИ</b>",
+        "empty": "❌ <b>Ваш запрос не может быть пустым!</b>"
     }
 
     def __init__(self):
@@ -49,7 +53,11 @@ class CuteAIMod(loader.Module):
     async def askai(self, message):
         """Ask an AI."""
         query = utils.get_args_raw(message)
+        if query == "":
+            await utils.answer(message, self.strings["empty"])
+            return
         answer = self.ask(query, self.config["model"])
+        await utils.answer(message, self.strings["loading"])
         await utils.answer(message, self.strings["answer"].format(
             query=query,
             answer=answer
