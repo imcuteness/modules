@@ -13,6 +13,7 @@ __version__ = (1, 0, 0)
 #   \_____|\____/   \/   |_| \_|\____/ \_____\____/|_____/|______|
 #    
 # meta developer: @cuteness_modules
+# модуль говно чуть-чуть но да ладно.
 
 from ..inline.types import InlineCall
 from .. import loader, utils

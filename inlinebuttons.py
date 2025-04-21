@@ -1,4 +1,4 @@
-__version__ = (1, 0, 0)
+__version__ = (1, 0, 1)
 
 #    _____ _    _ _______ ______ _   _ ______  _____ _____        
 #   / ____| |  | |__   __|  ____| \ | |  ____|/ ____/ ____|       
@@ -71,7 +71,7 @@ class InlineButtonsMod(loader.Module):
             return has_g, message_text, buttons
         except Exception:
             return False
-    async def generate_reply_markup(self, buttons, ifg: bool, mode: str):
+    async def generate_reply_markup(self, buttons, ifg: bool, mode: str = "link"):
         markup = []
         btns = []
 
@@ -81,7 +81,7 @@ class InlineButtonsMod(loader.Module):
             elif mode == "edit":
                 btn = {"text": text, "callback": self.inline_edit_callback, "args": (f"edit:{action}",), "force_me": True, "disable_security": True,}
             else:
-                continue
+                btn = {"text": text, "url": action}
 
             if ifg:
                 btns.append(btn)
@@ -92,7 +92,6 @@ class InlineButtonsMod(loader.Module):
             markup.append(btns)
 
         return markup
-
         
     @loader.command(
         ru_doc="Помощь по модулю"
